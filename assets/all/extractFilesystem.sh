@@ -2,6 +2,7 @@
 
 if [ ! -f /support/rootfs.tar.gz ]; then
    cat /support/rootfs.tar.gz.part* > /support/rootfs.tar.gz 
+   rm -f /support/rootfs.tar.gz.part*
 fi
 
 /support/busybox tar -xzvf /support/rootfs.tar.gz -C /
