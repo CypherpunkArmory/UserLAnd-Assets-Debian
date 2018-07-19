@@ -9,6 +9,7 @@ fi
 
 if [[ $? == 0 ]]; then
 	touch /support/.success_filesystem_extraction
+	rm -f /support/rootfs.tar.gz
 else
 	touch /support/.failure_filesystem_extraction
 fi
