@@ -11,7 +11,7 @@ mkdir -p $ROOTFS_DIR
 qemu-debootstrap --arch=$1 --variant=minbase --include=sudo,dropbear,libgl1-mesa-glx,tightvncserver,xterm,xfonts-base,twm,expect stable $ROOTFS_DIR http://ftp.debian.org/debian
 
 echo "127.0.0.1 localhost" > $ROOTFS_DIR/etc/hosts
-echo "nameserver 8.8.8.8" > $ROOTFS_DIR/resolv.conf
+echo "nameserver 8.8.8.8" > $ROOTFS_DIR/etc/resolv.conf
 echo "nameserver 8.8.4.4" >> $ROOTFS_DIR/etc/resolv.conf
 
 echo "#!/bin/sh" > $ROOTFS_DIR/etc/profile.d/userland.sh
