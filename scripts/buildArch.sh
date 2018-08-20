@@ -3,12 +3,26 @@
 export ARCH_DIR=output/${1}
 export ROOTFS_DIR=$ARCH_DIR/rootfs
 
+case "$1" in
+	arm) export DEBOOTSTRAP_ARCH=armhf
+		;;
+	arm64) export DEBOOTSTRAP_ARCH=arm64
+		;;
+	x86) export DEBOOTSTRAP_ARCH=i386
+		;;
+	x86_64) export DEBOOTSTRAP_ARCH=amd64
+		;;
+	*) echo "unsupported arch"
+		exit
+		;;
+esac
+
 rm -rf $ARCH_DIR
 mkdir -p $ARCH_DIR
 rm -rf $ROOTFS_DIR
 mkdir -p $ROOTFS_DIR
 
-qemu-debootstrap --arch=$1 --variant=minbase --include=sudo,dropbear,libgl1-mesa-glx,tightvncserver,xterm,xfonts-base,twm,expect stable $ROOTFS_DIR http://ftp.debian.org/debian
+qemu-debootstrap --arch=$DEBOOTSTRAP_ARCH --variant=minbase --include=sudo,dropbear,libgl1-mesa-glx,tightvncserver,xterm,xfonts-base,twm,expect stable $ROOTFS_DIR http://ftp.debian.org/debian
 
 echo "127.0.0.1 localhost" > $ROOTFS_DIR/etc/hosts
 echo "nameserver 8.8.8.8" > $ROOTFS_DIR/etc/resolv.conf
