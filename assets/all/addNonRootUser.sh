@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [[ -z "${INITIAL_USERNAME}" ]]; then
-  INITIAL_USERNAME="user"
+  INITIAL_USERNAME="user2"
 fi
 if [[ -z "${INITIAL_PASSWORD}" ]]; then
   INITIAL_PASSWORD="userland"
