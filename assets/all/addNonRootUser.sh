@@ -16,7 +16,7 @@ if [ ! -d "/home/$INITIAL_USERNAME" ]; then
   chsh -s /bin/bash $INITIAL_USERNAME
 
   mkdir -p /home/$INITIAL_USERNAME/.vnc
-  chown $INITIAL_USERNAME /home/$INITIAL_USERNAME/.vnc
+  chown $INITIAL_USERNAME:$INITIAL_USERNAME /home/$INITIAL_USERNAME/.vnc
   echo $INITIAL_VNC_PASSWORD | vncpasswd -f > /home/$INITIAL_USERNAME/.vnc/passwd
-  chown $INITIAL_USERNAME /home/$INITIAL_USERNAME/.vnc/passwd
+  chown $INITIAL_USERNAME:$INITIAL_USERNAME /home/$INITIAL_USERNAME/.vnc/passwd
 fi
