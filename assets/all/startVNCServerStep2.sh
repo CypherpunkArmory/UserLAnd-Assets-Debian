@@ -1,16 +1,23 @@
 #! /bin/bash
 
-if [ ! -f /home/user/.vnc/passwd ]; then
+if [[ -z "${INITIAL_USERNAME}" ]]; then
+  INITIAL_USERNAME="user"
+fi
+
+if [[ -z "${INITIAL_VNC_PASSWORD}" ]]; then
+  INITIAL_VNC_PASSWORD="userland"
+fi
+
+if [ ! -f /home/$INITIAL_USERNAME/.vnc/passwd ]; then
 
 prog=/usr/bin/vncpasswd
-mypass="userland"
 
 /usr/bin/expect <<EOF
 spawn "$prog"
 expect "Password:"
-send "$mypass\r"
+send "$INITIAL_VNC_PASSWORD\r"
 expect "Verify:"
-send "$mypass\r"
+send "$INITIAL_VNC_PASSWORD\r"
 expect "(y/n)?"
 send "n\r"
 expect eof
@@ -24,7 +31,7 @@ rm /tmp/.X11-unix/X51
 tightvncserver -kill :51
 tightvncserver :51
 
-while [ ! -f /home/user/.vnc/localhost:51.pid ]
+while [ ! -f /home/$INITIAL_USERNAME/.vnc/localhost:51.pid ]
 do
   sleep 1
 done
