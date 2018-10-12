@@ -41,11 +41,6 @@ echo "#deb-src http://deb.debian.org/debian/ stable main contrib non-free" >> $R
 echo "deb http://deb.debian.org/debian/ stable-updates main contrib non-free" >> $ROOTFS_DIR/etc/apt/sources.list
 echo "#deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free" >> $ROOTFS_DIR/etc/apt/sources.list
 
-cp scripts/addNonRootUser.sh $ROOTFS_DIR
-chmod 777 $ROOTFS_DIR/addNonRootUser.sh
-DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot $ROOTFS_DIR ./addNonRootUser.sh
-rm $ROOTFS_DIR/addNonRootUser.sh
-
 cp scripts/shrinkRootfs.sh $ROOTFS_DIR
 chmod 777 $ROOTFS_DIR/shrinkRootfs.sh
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot $ROOTFS_DIR ./shrinkRootfs.sh
