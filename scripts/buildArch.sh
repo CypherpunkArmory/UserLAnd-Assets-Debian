@@ -3,12 +3,28 @@
 export ARCH_DIR=output/${1}
 export ROOTFS_DIR=$ARCH_DIR/rootfs
 
+case "$1" in
+    arm) export DEBOOTSTRAP_ARCH=armhf
+        ;;
+    arm64) export DEBOOTSTRAP_ARCH=arm64
+        ;;
+    x86) export DEBOOTSTRAP_ARCH=i386
+        ;;
+    x86_64) export DEBOOTSTRAP_ARCH=amd64
+        ;;
+    all) exit
+        ;;
+    *) echo "unsupported arch"
+        exit
+        ;;
+esac
+
 rm -rf $ARCH_DIR
 mkdir -p $ARCH_DIR
 rm -rf $ROOTFS_DIR
 mkdir -p $ROOTFS_DIR
 
-qemu-debootstrap --arch=$1 --variant=minbase --include=sudo,dropbear,libgl1-mesa-glx,tightvncserver,xterm,xfonts-base,twm,expect stable $ROOTFS_DIR http://ftp.debian.org/debian
+qemu-debootstrap --arch=$DEBOOTSTRAP_ARCH --variant=minbase --include=sudo,dropbear,libgl1-mesa-glx,tightvncserver,xterm,xfonts-base,twm,expect stable $ROOTFS_DIR http://ftp.debian.org/debian
 
 echo "127.0.0.1 localhost" > $ROOTFS_DIR/etc/hosts
 echo "nameserver 8.8.8.8" > $ROOTFS_DIR/etc/resolv.conf
@@ -24,11 +40,6 @@ echo "deb http://deb.debian.org/debian/ stable main contrib non-free" > $ROOTFS_
 echo "#deb-src http://deb.debian.org/debian/ stable main contrib non-free" >> $ROOTFS_DIR/etc/apt/sources.list
 echo "deb http://deb.debian.org/debian/ stable-updates main contrib non-free" >> $ROOTFS_DIR/etc/apt/sources.list
 echo "#deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free" >> $ROOTFS_DIR/etc/apt/sources.list
-
-cp scripts/addNonRootUser.sh $ROOTFS_DIR
-chmod 777 $ROOTFS_DIR/addNonRootUser.sh
-DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C LANGUAGE=C LANG=C chroot $ROOTFS_DIR ./addNonRootUser.sh
-rm $ROOTFS_DIR/addNonRootUser.sh
 
 cp scripts/shrinkRootfs.sh $ROOTFS_DIR
 chmod 777 $ROOTFS_DIR/shrinkRootfs.sh
