@@ -5,4 +5,5 @@ nosudo 1536961533
 startSSHServer.sh 1543445241
 startVNCServer.sh 1537988124
 startVNCServerStep2.sh 1537988124
+startXSDLServer.sh 1537988124
 userland_profile.sh 1536961533
