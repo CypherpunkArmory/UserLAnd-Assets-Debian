@@ -11,4 +11,4 @@ then
     cp $ARCH_DIR/busybox $INSTALL_DIR/busybox
 fi
 
-rm -f $INSTALL_DIR/assets.txt; for f in $(ls $INSTALL_DIR); do echo "$f $(date +%s -r $INSTALL_DIR/$f)" >> $INSTALL_DIR/assets.txt; done
+rm -f $INSTALL_DIR/assets.txt; for f in $(ls $INSTALL_DIR); do echo "$f $(date +%s -r $INSTALL_DIR/$f) $(md5sum $INSTALL_DIR/$f | awk '{ print $1 }')" >> $INSTALL_DIR/assets.txt; done
