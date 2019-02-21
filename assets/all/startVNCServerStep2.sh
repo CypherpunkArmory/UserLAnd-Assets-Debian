@@ -35,8 +35,6 @@ if [ ! -f /home/$INITIAL_USERNAME/.vncrc ]; then
 	echo $vncrc_line > /home/$INITIAL_USERNAME/.vncrc
 fi
 
-
-
 rm /tmp/.X51-lock
 rm /tmp/.X11-unix/X51
 tightvncserver -kill :51
