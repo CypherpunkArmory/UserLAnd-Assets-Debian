@@ -30,9 +30,9 @@ if [[ -z "${DIMENSIONS}" ]]; then
 	DIMENSIONS="1024x768"
 fi
 
-if [ ! -f /home/user/.vncrc ]; then
+if [ ! -f /home/$INITIAL_USERNAME/.vncrc ]; then
 	vncrc_line="\$dimensions = \"${DIMENSIONS}\";"
-	echo $vncrc_line > /home/user/.vncrc
+	echo $vncrc_line > /home/$INITIAL_USERNAME/.vncrc
 fi
 
 
