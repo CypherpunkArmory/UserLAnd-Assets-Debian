@@ -31,7 +31,7 @@ if [[ -z "${DIMENSIONS}" ]]; then
 fi
 
 if [ ! -f /home/$INITIAL_USERNAME/.vncrc ]; then
-	vncrc_line="\$dimensions = \"${DIMENSIONS}\";"
+	vncrc_line="\$geometry = \"${DIMENSIONS}\";"
 	echo $vncrc_line > /home/$INITIAL_USERNAME/.vncrc
 fi
 
