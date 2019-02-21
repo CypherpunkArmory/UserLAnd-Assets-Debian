@@ -27,11 +27,12 @@ EOF
 fi
 
 if [[ -z "${DIMENSIONS}" ]]; then
-  DIMENSIONS="1024x768"
+	DIMENSIONS="1024x768"
 fi
 
 if [ ! -f /home/user/.vncrc ]; then
-	echo $DIMENSIONS > /home/user/.vncrc
+	vncrc_line="\$dimensions = \"${DIMENSIONS}\";"
+	echo $vncrc_line > /home/user/.vncrc
 fi
 
 
