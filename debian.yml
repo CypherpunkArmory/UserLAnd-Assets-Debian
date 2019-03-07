@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+   imagebuild:
+     build: 
+       context: .
+       dockerfile: Dockerfile
+       args:
+         IMAGE_DISTRO: debian
+         IMAGE_VERSION: latest
+         UPDATE_CMD: apt-get update
+         INSTALL_CMD: apt-get install -y --no-install-recommends sudo dropbear libgl1-mesa-glx tightvncserver xterm xfonts-base twm expect
+         CLEANUP_CMD: apt-get clean
+         RUN_CMD: /input/debian.sh
+     volumes:
+       - ./output:/output
+       - ./input:/input

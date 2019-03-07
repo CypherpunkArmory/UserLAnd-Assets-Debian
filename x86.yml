@@ -1,0 +1,8 @@
+version: '3.2'
+
+services:
+   imagebuild:
+     build: 
+       args:
+         IMAGE_ARCH: i386
+         QEMU_FILE: qemu-i386-static
