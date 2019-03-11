@@ -84,19 +84,19 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_arm
+      - build_arm:
           filters:
             tags:
               only: /.*/
-      - build_arm64
+      - build_arm64:
           filters:
             tags:
               only: /.*/
-      - build_x86
+      - build_x86:
           filters:
             tags:
               only: /.*/
-      - build_x86_64
+      - build_x86_64:
           filters:
             tags:
               only: /.*/
