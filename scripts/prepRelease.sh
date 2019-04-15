@@ -26,4 +26,4 @@ rm $ARCH_DIR/release/assets.txt
 cat $ARCH_DIR/release/rootfs.tar.gz.part* > $ARCH_DIR/$1-rootfs.tar.gz
 rm $ARCH_DIR/release/rootfs.tar.gz.part*
 rm -f $ARCH_DIR/assets.txt; for f in $(ls $ARCH_DIR/release/); do echo "$f $(date +%s -r $ARCH_DIR/release/$f) $(md5sum $ARCH_DIR/release/$f | awk '{ print $1 }')" >> $ARCH_DIR/assets.txt; done
-tar -czvf $ARCH_DIR/$1-assets.tar.gz $ARCH_DIR/release/*
+tar -czvf $ARCH_DIR/$1-assets.tar.gz -C $ARCH_DIR/release/ .
