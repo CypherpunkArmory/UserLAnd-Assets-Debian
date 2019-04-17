@@ -9,4 +9,4 @@ if [ ! -f /support/.ssh_setup_complete ]; then
     touch /support/.ssh_setup_complete
 fi
 
-dropbear -E -p 2022
+dropbear -E -p 127.0.0.1:2022
