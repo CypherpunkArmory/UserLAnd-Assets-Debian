@@ -1,0 +1,8 @@
+version: '3.2'
+
+services:
+   imagebuild:
+     build: 
+       args:
+         IMAGE_ARCH: arm32v7
+         QEMU_FILE: qemu-arm-static
