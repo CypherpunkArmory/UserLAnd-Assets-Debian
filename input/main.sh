@@ -11,10 +11,10 @@ echo "export LIBGL_ALWAYS_SOFTWARE=1" >> /etc/profile.d/userland.sh
 chmod +x /etc/profile.d/userland.sh
 
 #update our repos so we can install some packages
-echo "deb http://deb.debian.org/debian/ stable main contrib non-free" > /etc/apt/sources.list
-echo "#deb-src http://deb.debian.org/debian/ stable main contrib non-free" >> /etc/apt/sources.list
-echo "deb http://deb.debian.org/debian/ stable-updates main contrib non-free" >> /etc/apt/sources.list
-echo "#deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free" >> /etc/apt/sources.list
+echo "deb http://deb.debian.org/debian/ buster main contrib non-free" > /etc/apt/sources.list
+echo "#deb-src http://deb.debian.org/debian/ buster main contrib non-free" >> /etc/apt/sources.list
+echo "deb http://deb.debian.org/debian/ buster-updates main contrib non-free" >> /etc/apt/sources.list
+echo "#deb-src http://deb.debian.org/debian/ buster-updates main contrib non-free" >> /etc/apt/sources.list
 apt-get update
 
 #install some packages with need for UserLAnd

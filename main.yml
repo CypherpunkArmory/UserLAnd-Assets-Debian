@@ -7,7 +7,7 @@ services:
        dockerfile: Dockerfile
        args:
          IMAGE_DISTRO: debian
-         IMAGE_VERSION: latest
+         IMAGE_VERSION: buster
      volumes:
        - ./output:/output
        - ./input:/input
