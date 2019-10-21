@@ -22,8 +22,8 @@ apt-get install -y --no-install-recommends sudo dropbear libgl1-mesa-glx tightvn
 
 #weirdly need to reinstall xfonts-base for armhf
 apt-get update
-apt-get remove --purge xfonts-base
-apt-get install xfonts-base
+apt-get remove -y --purge xfonts-base
+apt-get install -y xfonts-base
 
 #clean up after ourselves
 apt-get clean
