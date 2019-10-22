@@ -20,9 +20,6 @@ apt-get update
 #install some packages with need for UserLAnd
 apt-get install -y --no-install-recommends sudo dropbear libgl1-mesa-glx tightvncserver xterm xfonts-base twm expect
 
-#weirdly need to reconfigure xfonts-base for armhf
-dpkg-reconfigure xfonts-base
-
 #clean up after ourselves
 apt-get clean
 
