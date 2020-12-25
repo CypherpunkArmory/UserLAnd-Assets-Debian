@@ -1,125 +1,13 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
-#
-version: 2
-
-jobs:
-  build_arm:
-    machine: true
-
-    working_directory: ~/UserLAnd-Assets-Debian
-
-    steps:
-      - checkout
-      - run:
-          name: update packages
-          command: sudo apt-get update
-      - run:
-          name: install binfmt-support
-          command: sudo apt-get install binfmt-support qemu qemu-user-static
-      - run:
-          name: build arm assets
-          command: ./buildArch.sh arm
-      - persist_to_workspace:
-          root: .
-          paths:
-            - release/*    
-
-  build_arm64:
-    machine: true
-
-    working_directory: ~/UserLAnd-Assets-Debian
-
-    steps:
-      - checkout
-      - run:
-          name: update packages
-          command: sudo apt-get update
-      - run:
-          name: install binfmt-support
-          command: sudo apt-get install binfmt-support qemu qemu-user-static
-      - run:
-          name: build arm64 assets
-          command: ./buildArch.sh arm64
-      - persist_to_workspace:
-          root: .
-          paths:
-            - release/*    
-
-  build_x86:
-    machine: true
-
-    working_directory: ~/UserLAnd-Assets-Debian
-
-    steps:
-      - checkout
-      - run:
-          name: build x86 assets
-          command: ./buildArch.sh x86
-      - persist_to_workspace:
-          root: .
-          paths:
-            - release/*    
-
-  build_x86_64:
-    machine: true
-
-    working_directory: ~/UserLAnd-Assets-Debian
-
-    steps:
-      - checkout
-      - run:
-          name: build x86_64 assets
-          command: ./buildArch.sh x86_64
-      - persist_to_workspace:
-          root: .
-          paths:
-            - release/*    
-
-  publish-github-release:
-    docker:
-      - image: circleci/golang:1.12
-      
-    steps:
-      - attach_workspace:
-          at: .
-
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            go get github.com/tcnksm/ghr
-            VERSION=$CIRCLE_TAG
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -n ${VERSION} -delete -prerelease ${VERSION} release/
-
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
 workflows:
-  version: 2
-  build_and_test:
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
     jobs:
-      - build_arm:
-          filters:
-            tags:
-              only: /.*/
-      - build_arm64:
-          filters:
-            tags:
-              only: /.*/
-      - build_x86:
-          filters:
-            tags:
-              only: /.*/
-      - build_x86_64:
-          filters:
-            tags:
-              only: /.*/
-      - publish-github-release:
-          requires:
-            - build_arm
-            - build_arm64
-            - build_x86
-            - build_x86_64
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v\d+\.\d+\.\d+$/
+      - welcome/run
