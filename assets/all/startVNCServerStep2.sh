@@ -30,19 +30,17 @@ if [[ -z "${DIMENSIONS}" ]]; then
 	DIMENSIONS="1024x768"
 fi
 
-if [ ! -f /home/$INITIAL_USERNAME/.vncrc ]; then
-	vncrc_line="\$geometry = \"${DIMENSIONS}\";"
-	echo $vncrc_line > /home/$INITIAL_USERNAME/.vncrc
-fi
+vncrc_line="\$geometry = \"${DIMENSIONS}\";"
+echo $vncrc_line > /home/$INITIAL_USERNAME/.vncrc
 
-rm /tmp/.X51-lock
-rm /tmp/.X11-unix/X51
-tightvncserver -kill :51
-tightvncserver :51
+rm /tmp/.X52-lock
+rm /tmp/.X11-unix/X52
+tightvncserver -kill :52
+tightvncserver :52
 
-while [ ! -f /home/$INITIAL_USERNAME/.vnc/localhost:51.pid ]
+while [ ! -f /home/$INITIAL_USERNAME/.vnc/localhost:52.pid ]
 do
   sleep 1
 done
 cd ~
-DISPLAY=localhost:51 xterm -geometry 80x24+0+0 -e /bin/bash --login &
+DISPLAY=localhost:52 xterm -geometry 80x24+0+0 -e /bin/bash --login &
