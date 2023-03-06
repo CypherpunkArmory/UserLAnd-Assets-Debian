@@ -14,10 +14,6 @@ chmod +x /etc/profile.d/userland.sh
 apt-get update
 
 #install some packages with need for UserLAnd
-echo "deb http://deb.debian.org/debian/ bullseye main contrib non-free" > /etc/apt/sources.list
-echo "#deb-src http://deb.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list
-echo "deb http://deb.debian.org/debian/ bullseye-updates main contrib non-free" >> /etc/apt/sources.list
-echo "#deb-src http://deb.debian.org/debian/ bullseye-updates main contrib non-free" >> /etc/apt/sources.list
 apt-get install -y --no-install-recommends sudo dropbear libgl1-mesa-glx tightvncserver xterm xfonts-base twm expect wget curl
 
 #clean up after ourselves
