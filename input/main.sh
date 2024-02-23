@@ -19,7 +19,7 @@ apt-get update
 
 #install some packages with need for UserLAnd
 apt-get install -y --no-install-recommends sudo dropbear libgl1-mesa-glx tightvncserver xterm xfonts-base twm openbox expect
-apt-get install -y firefox-esr
+apt-get install -y audacity
 apt-get install -y pulseaudio
 
 #clean up after ourselves
