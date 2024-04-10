@@ -30,3 +30,5 @@ gcc -shared -fpic /input/disableselinux.c -o /output/libdisableselinux.so
 #grab a static version of busybox that we can use to set things up later
 apt-get -y install busybox-static
 cp /bin/busybox output/busybox
+
+
