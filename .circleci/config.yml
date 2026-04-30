@@ -79,7 +79,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: circleci/golang:1.17
+      - image: cimg/go:1.22
       
     steps:
       - attach_workspace:
@@ -88,7 +88,7 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
-            go get github.com/tcnksm/ghr
+            go install github.com/tcnksm/ghr@latest
             VERSION=$CIRCLE_TAG
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -n ${VERSION} -delete -prerelease ${VERSION} release/
 
