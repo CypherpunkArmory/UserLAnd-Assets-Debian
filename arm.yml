@@ -4,5 +4,6 @@ services:
    imagebuild:
      build: 
        args:
+         IMAGE_PLATFORM: linux/arm/v7
          IMAGE_ARCH: arm32v7
          QEMU_FILE: qemu-arm-static

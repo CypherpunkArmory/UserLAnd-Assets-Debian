@@ -4,5 +4,6 @@ services:
    imagebuild:
      build: 
        args:
+         IMAGE_PLATFORM: linux/amd64
          IMAGE_ARCH: amd64
          QEMU_FILE: qemu-x86_64-static

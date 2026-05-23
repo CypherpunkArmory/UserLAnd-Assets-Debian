@@ -4,5 +4,6 @@ services:
    imagebuild:
      build: 
        args:
+         IMAGE_PLATFORM: linux/386
          IMAGE_ARCH: i386
          QEMU_FILE: qemu-i386-static
