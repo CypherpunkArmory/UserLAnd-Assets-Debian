@@ -14,7 +14,7 @@ chmod +x /etc/profile.d/userland.sh
 apt-get update
 
 #install some packages with need for UserLAnd
-apt-get install -y --no-install-recommends sudo dropbear libgl1 libglx-mesa0 tightvncserver xterm xfonts-base twm expect wget curl
+apt-get install -y --no-install-recommends sudo dropbear libgl1 libglx-mesa0 tightvncserver xterm xfonts-base twm openbox expect wget curl
 apt-get install -y audacity
 apt-get install -y pulseaudio
 
