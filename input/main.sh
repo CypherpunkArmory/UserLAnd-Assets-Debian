@@ -10,10 +10,11 @@ echo "unset LD_LIBRARY_PATH" >> /etc/profile.d/userland.sh
 echo "export LIBGL_ALWAYS_SOFTWARE=1" >> /etc/profile.d/userland.sh
 chmod +x /etc/profile.d/userland.sh
 
+#update our repos so we can install some packages
 apt-get update
 
 #install some packages with need for UserLAnd
-apt-get install -y --no-install-recommends sudo dropbear libgl1-mesa-glx tightvncserver xterm xfonts-base twm openbox expect
+apt-get install -y --no-install-recommends sudo dropbear libgl1 libglx-mesa0 tightvncserver xterm xfonts-base twm expect wget curl
 apt-get install -y audacity
 apt-get install -y pulseaudio
 
